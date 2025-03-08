@@ -56,6 +56,12 @@ public class GoodIdeaDetector {
         if (block.isOf(Blocks.LILY_PAD)) {
             return true;
         }
+        if (block.isOf(Blocks.WARPED_FUNGUS)) {
+            return true;
+        }
+        if (block.isOf(Blocks.CRIMSON_FUNGUS)) {
+            return true;
+        }
         if (block.getBlock() instanceof CropBlock || block.getBlock() instanceof NetherWartBlock) {
             return true;
         }
