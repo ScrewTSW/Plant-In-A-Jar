@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "plantinajar",
-  "version": "2.3.1",
+  "version": "2.3.2",
 
   "name": "Plant In A Jar",
   "description": "This is a description! I won't tell everyone what my mod is about!",
@@ -30,7 +30,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.16.10",
     "minecraft": "*"
   }
 }

@@ -1,3 +1,4 @@
+import io.github.coolcrabs.brachyura.dependency.JavaJarDependency;
 import io.github.coolcrabs.brachyura.fabric.FabricContext.ModDependencyCollector;
 import io.github.coolcrabs.brachyura.fabric.FabricContext.ModDependencyFlag;
 import io.github.coolcrabs.brachyura.fabric.FabricLoader;
@@ -9,6 +10,10 @@ import io.github.coolcrabs.brachyura.maven.MavenId;
 import io.github.coolcrabs.brachyura.minecraft.Minecraft;
 import io.github.coolcrabs.brachyura.minecraft.VersionMeta;
 import net.fabricmc.mappingio.tree.MappingTree;
+
+import java.io.OutputStream;
+import java.net.URI;
+import java.nio.file.Path;
 
 public class Buildscript extends SimpleFabricProject {
     public static final String COTTONMC_MAVEN = "https://server.bbkr.space/artifactory/libs-release";
@@ -25,12 +30,12 @@ public class Buildscript extends SimpleFabricProject {
 
     @Override
     public MappingTree createMappings() {
-        return Yarn.ofMaven(FabricMaven.URL, FabricMaven.yarn("1.18.2+build.3")).tree;
+        return Yarn.ofMaven(FabricMaven.URL, FabricMaven.yarn("1.18.2+build.4")).tree;
     }
 
     @Override
     public FabricLoader getLoader() {
-        return new FabricLoader(FabricMaven.URL, FabricMaven.loader("0.14.7"));
+        return new FabricLoader(FabricMaven.URL, FabricMaven.loader("0.16.10"));
     }
 
     @Override
@@ -55,7 +60,14 @@ public class Buildscript extends SimpleFabricProject {
             d.addMaven(FabricMaven.URL, new MavenId(FabricMaven.GROUP_ID + ".fabric-api", module[0], module[1]), ModDependencyFlag.RUNTIME, ModDependencyFlag.COMPILE);
         }
         jij(d.addMaven(Maven.MAVEN_CENTRAL, new MavenId("org.objenesis:objenesis:3.2"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME));
-        jij(d.addMaven(COTTONMC_MAVEN, new MavenId("io.github.cottonmc:LibGui:5.4.2+1.18.2"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME));
+//        jij(d.addMaven(COTTONMC_MAVEN, new MavenId("io.github.cottonmc:LibGui:5.4.2+1.18.2"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME));
+        jij(d.add(
+                new JavaJarDependency(
+                        Path.of("../../src/main/resources","libs","LibGui-5.4.3+1.18.2.jar"),
+                        Path.of("../../src/main/resources","libs","LibGui-5.4.3+1.18.2-sources.jar"),
+                        new MavenId("io.github.cottonmc","LibGui","5.4.3")),
+                ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME
+        ));
         d.addMaven(Maven.MAVEN_CENTRAL, new MavenId("io.github.juuxel:libninepatch:1.1.0"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME); // jij'd in libgui
         d.addMaven(COTTONMC_MAVEN, new MavenId("io.github.cottonmc:Jankson-Fabric:4.0.0+j1.2.0"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME); // jij'd in libgui
         d.addMaven(Maven.MAVEN_CENTRAL, new MavenId("blue.endless:jankson:1.2.1"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME); // jij'd in libgui
