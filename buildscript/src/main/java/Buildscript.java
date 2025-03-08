@@ -57,7 +57,7 @@ public class Buildscript extends SimpleFabricProject {
             d.addMaven(FabricMaven.URL, new MavenId(FabricMaven.GROUP_ID + ".fabric-api", module[0], module[1]), ModDependencyFlag.RUNTIME, ModDependencyFlag.COMPILE);
         }
         jij(d.addMaven(Maven.MAVEN_CENTRAL, new MavenId("org.objenesis:objenesis:3.2"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME));
-        jij(d.addMaven(COTTONMC_MAVEN, new MavenId("io.github.cottonmc:LibGui:8.0.1+1.20"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME));
+        jij(d.addMaven(COTTONMC_MAVEN, new MavenId("io.github.cottonmc:LibGui:8.1.1+1.20.1"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME));
         d.addMaven(Maven.MAVEN_CENTRAL, new MavenId("io.github.juuxel:libninepatch:1.2.0"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME); // jij'd in libgui
         d.addMaven(COTTONMC_MAVEN, new MavenId("io.github.cottonmc:Jankson-Fabric:5.0.1+j1.2.2"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME); // jij'd in libgui
         d.addMaven(Maven.MAVEN_CENTRAL, new MavenId("blue.endless:jankson:1.2.2"), ModDependencyFlag.COMPILE, ModDependencyFlag.RUNTIME); // jij'd in libgui
